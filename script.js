@@ -1,4 +1,4 @@
-﻿const imagenes = [
+const imagenes = [
 	'Dashboard medidor weidmuller EM220.png',
 	'DASHBOARD NODE RED OEE + DB +Sim.png',
 	'DASHBOARD NODE RED OEE + DB ANALOGICA.png',
