@@ -4,98 +4,106 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
-    background-color: #003366; /* Azul Omron Global */
-    color: #ffffff; /* Texto blanco para contraste */
+    padding: 15px;
+    background-color: #003366;
+    color: #ffffff;
 }
 
 #presentacion {
     text-align: center;
-    max-width: 800px;
     width: 100%;
-    margin: 0 auto;
-    background-color: #ffffff; /* Fondo blanco para el contenedor */
-    padding: 20px;
+    max-width: 800px;
+    background-color: #ffffff;
+    padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #titulo {
-    font-size: 2em;
+    font-size: 1.5rem;
     margin-bottom: 10px;
-    color: #003366; /* Azul Omron */
+    color: #003366;
 }
 
 #subtitulo {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    color: #555555; /* Gris oscuro */
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #555555;
 }
 
 #contenido {
     width: 100%;
-    height: 500px;
+    height: 50vh; /* Altura relativa a la pantalla */
+    min-height: 300px; /* Altura mínima para móviles pequeños */
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     border: 1px solid #cccccc;
-    background-color: #f9f9f9; /* Fondo gris claro para el contenido */
+    background-color: #f9f9f9;
     border-radius: 5px;
-}
-
-#contenido img, #contenido video {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    display: none;
-    object-fit: contain;
-}
-
-#contenido img.active, #contenido video.active {
-    display: block;
 }
 
 #navegacion {
-    margin-top: 20px;
+    margin-top: 15px;
     display: flex;
     justify-content: center;
-    gap: 10px; /* Espacio entre botones */
+    gap: 8px;
 }
 
-#navegacion button {
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #ffffff;
-    background-color: #003366; /* Azul Omron */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Botones responsivos */
+button {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    min-width: 100px; /* Ancho mínimo para móviles */
 }
 
-#navegacion button:hover {
-    background-color: #004488; /* Azul más claro al pasar el mouse */
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    #titulo {
+        font-size: 1.3rem;
+    }
+
+    #subtitulo {
+        font-size: 1rem;
+    }
+
+    #contenido {
+        height: 40vh;
+        min-height: 250px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+        min-width: 90px;
+    }
 }
 
-#reiniciarBtn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 1em;
-    color: #ffffff;
-    background-color: #003366; /* Azul Omron */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+        align-items: flex-start; /* Mejor uso del espacio */
+    }
 
-#reiniciarBtn:hover {
-    background-color: #004488; /* Azul más claro al pasar el mouse */
-}
+    #presentacion {
+        padding: 10px;
+    }
 
-.oculto {
-    display: none;
+    #contenido {
+        height: 35vh;
+        min-height: 200px;
+    }
+
+    #navegacion {
+        flex-direction: column; /* Botones en columna en móviles muy pequeños */
+        gap: 6px;
+    }
+
+    button {
+        width: 100%;
+        padding: 8px 16px;
+    }
 }
