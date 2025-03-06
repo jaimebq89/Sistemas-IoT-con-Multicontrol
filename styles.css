@@ -7,30 +7,30 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 15px;
-    background-color: #003366;
-    color: #ffffff;
+    background-color: #003366; /* Azul Omron Global */
+    color: #ffffff; /* Texto blanco para contraste */
 }
 
 #presentacion {
     text-align: center;
     width: 100%;
     max-width: 800px;
-    background-color: #ffffff;
-    padding: 15px;
+    background-color: #ffffff; /* Fondo blanco para el contenedor */
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
 }
 
 #titulo {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 10px;
-    color: #003366;
+    color: #003366; /* Azul Omron */
 }
 
 #subtitulo {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     margin-bottom: 15px;
-    color: #555555;
+    color: #555555; /* Gris oscuro */
 }
 
 #contenido {
@@ -42,7 +42,7 @@ body {
     align-items: center;
     overflow: hidden;
     border: 1px solid #cccccc;
-    background-color: #f9f9f9;
+    background-color: #f9f9f9; /* Fondo gris claro para el contenido */
     border-radius: 5px;
 }
 
@@ -61,20 +61,32 @@ body {
     margin-top: 15px;
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 10px; /* Espacio entre botones */
 }
 
-/* Botones responsivos */
 button {
     padding: 12px 24px;
-    font-size: 0.9rem;
-    min-width: 100px; /* Ancho mínimo para móviles */
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #003366; /* Azul Omron */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #004488; /* Azul más claro al pasar el mouse */
+}
+
+.oculto {
+    display: none;
 }
 
 /* Media Queries para pantallas pequeñas */
 @media (max-width: 768px) {
     #titulo {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 
     #subtitulo {
@@ -88,8 +100,7 @@ button {
 
     button {
         padding: 10px 20px;
-        font-size: 0.85rem;
-        min-width: 90px;
+        font-size: 0.9rem;
     }
 }
 
@@ -100,7 +111,7 @@ button {
     }
 
     #presentacion {
-        padding: 10px;
+        padding: 15px;
     }
 
     #contenido {
@@ -110,7 +121,7 @@ button {
 
     #navegacion {
         flex-direction: column; /* Botones en columna en móviles muy pequeños */
-        gap: 6px;
+        gap: 8px;
     }
 
     button {
