@@ -46,6 +46,17 @@ body {
     border-radius: 5px;
 }
 
+#contenido img, #contenido video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recorta la imagen para que cubra el contenedor */
+    display: none;
+}
+
+#contenido img.active, #contenido video.active {
+    display: block;
+}
+
 #navegacion {
     margin-top: 15px;
     display: flex;
