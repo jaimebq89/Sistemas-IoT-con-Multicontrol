@@ -1,128 +1,120 @@
-const imagenes = [
-	'Dashboard medidor weidmuller EM220.png',
-	'DASHBOARD NODE RED OEE + DB +Sim.png',
-	'DASHBOARD NODE RED OEE + DB ANALOGICA.png',
-	'DASHBOARD NODE RED OEE + DB.png',
-	'DASHBOARD NODE RED SIM.png',
-	'DASHBOARD NODE RED UNIDADES DATABASE.png',
-	'DASHBOARD NODE RED UNIDADES.png',
-	'dashboard nodered File browser.png',
-	'ESQUEMA NODE-RED.png',
-	'miniSCADA weidmuller DEmo.png',
-	'miniSCADA weidmuller uc 20 IoT - demo OEE.png',
-	'NODE config librerias red modbus.png',
-	'NODE configuracion cliente modbus tcp.png',
-	'NODE configuracion dispositivos de red modbus.png',
-	'node Dashboard Med_Energia.png',
-	'node dashboard OEE ModTCP.png',
-	'node file browser programming.png',
-	'node fileget from weidmuller.png',
-	'node files config.png',
-	'node files timestamp.png',
-	'node logging  programing from weidmuller.png',
-	'Node red Dashboard OEE Escritura DB.png',
-	'Node script conversiones variables.png',
-	'Node script declaracion de variables en js node red - scaling.png',
-	'script señales OEE - DB.png',
-    // Añade todas las rutas de las imágenes aquí
-];
-
-const video = 'Video Controlador IoT - OEE - PLC Comm.mp4';
-
-const contenido = document.getElementById('contenido');
-const subtitulo = document.getElementById('subtitulo');
-const reiniciarBtn = document.getElementById('reiniciarBtn');
-const anteriorBtn = document.getElementById('anteriorBtn');
-const siguienteBtn = document.getElementById('siguienteBtn');
-let indiceActual = 0;
-let intervalo;
-
-function cargarImagenes() {
-    imagenes.sort(); // Ordena las imágenes alfabéticamente
-    imagenes.forEach((imagen, index) => {
-        const img = document.createElement('img');
-        img.src = imagen;
-        img.alt = `Imagen ${index + 1}`;
-        if (index === 0) {
-            img.classList.add('active');
-            subtitulo.textContent = obtenerNombreArchivo(imagen); // Muestra el nombre del archivo
-        }
-        contenido.appendChild(img);
-    });
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 15px;
+    background-color: #003366;
+    color: #ffffff;
 }
 
-function cargarVideo() {
-    const vid = document.createElement('video');
-    vid.src = video;
-    vid.controls = true;
-    vid.classList.add('active');
-    contenido.appendChild(vid);
-    subtitulo.textContent = obtenerNombreArchivo(video); // Muestra el nombre del video
-    reiniciarBtn.classList.remove('oculto'); // Muestra el botón de reinicio
-    clearInterval(intervalo); // Detiene el intervalo automático
+#presentacion {
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-function obtenerNombreArchivo(ruta) {
-    const nombreArchivo = ruta.split('/').pop(); // Extrae el nombre del archivo de la ruta
-    const nombreSinExtension = nombreArchivo.split('.').slice(0, -1).join('.'); // Elimina la extensión
-    return decodeURIComponent(nombreSinExtension); // Decodifica los caracteres especiales
+#titulo {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #003366;
 }
 
-function mostrarSlide(index) {
-    const elementos = contenido.querySelectorAll('img, video');
-    elementos[indiceActual].classList.remove('active');
-    indiceActual = index;
-    elementos[indiceActual].classList.add('active');
-    subtitulo.textContent = obtenerNombreArchivo(elementos[indiceActual].src); // Actualiza el subtítulo
+#subtitulo {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #555555;
 }
 
-function siguiente() {
-    const elementos = contenido.querySelectorAll('img, video');
-    if (indiceActual < elementos.length - 1) {
-        mostrarSlide(indiceActual + 1);
-    } else {
-        cargarVideo(); // Si es la última imagen, carga el video
+#contenido {
+    width: 100%;
+    height: 50vh; /* Altura relativa a la pantalla */
+    min-height: 300px; /* Altura mínima para móviles pequeños */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 1px solid #cccccc;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+#contenido img, #contenido video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Recorta la imagen para que cubra el contenedor */
+    display: none;
+}
+
+#contenido img.active, #contenido video.active {
+    display: block;
+}
+
+#navegacion {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Botones responsivos */
+button {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+    min-width: 100px; /* Ancho mínimo para móviles */
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    #titulo {
+        font-size: 1.3rem;
+    }
+
+    #subtitulo {
+        font-size: 1rem;
+    }
+
+    #contenido {
+        height: 40vh;
+        min-height: 250px;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+        min-width: 90px;
     }
 }
 
-function anterior() {
-    if (indiceActual > 0) {
-        mostrarSlide(indiceActual - 1);
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+        align-items: flex-start; /* Mejor uso del espacio */
+    }
+
+    #presentacion {
+        padding: 10px;
+    }
+
+    #contenido {
+        height: 35vh;
+        min-height: 200px;
+    }
+
+    #navegacion {
+        flex-direction: column; /* Botones en columna en móviles muy pequeños */
+        gap: 6px;
+    }
+
+    button {
+        width: 100%;
+        padding: 8px 16px;
     }
 }
-
-function reiniciarPresentacion() {
-    const elementos = contenido.querySelectorAll('img, video');
-    elementos.forEach((elemento) => elemento.remove()); // Elimina todas las imágenes y el video
-    indiceActual = 0;
-    subtitulo.textContent = '';
-    reiniciarBtn.classList.add('oculto'); // Oculta el botón de reinicio
-    cargarImagenes(); // Vuelve a cargar las imágenes
-    iniciarIntervalo(); // Reinicia el intervalo automático
-}
-
-function iniciarIntervalo() {
-    clearInterval(intervalo); // Limpia el intervalo anterior (si existe)
-    intervalo = setInterval(siguiente, 3000); // Inicia un nuevo intervalo
-}
-
-function detenerIntervalo() {
-    clearInterval(intervalo); // Detiene el intervalo automático
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    cargarImagenes();
-    iniciarIntervalo(); // Inicia el intervalo automático
-});
-
-anteriorBtn.addEventListener('click', () => {
-    detenerIntervalo(); // Detiene el intervalo automático
-    anterior(); // Navega al slide anterior
-});
-
-siguienteBtn.addEventListener('click', () => {
-    detenerIntervalo(); // Detiene el intervalo automático
-    siguiente(); // Navega al slide siguiente
-});
-
-reiniciarBtn.addEventListener('click', reiniciarPresentacion); // Evento para reiniciar la presentación
